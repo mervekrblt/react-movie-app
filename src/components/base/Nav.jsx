@@ -1,5 +1,5 @@
-import { changeTheme } from "../../reduxStore/theme";
 import { useSelector, useDispatch } from "react-redux";
+import { changeTheme } from "../../reduxStore/theme";
 import theme from "../../theme";
 import ThemeSwitch from "../ThemeSwitch";
 
@@ -7,6 +7,7 @@ const Nav = () => {
   const stateTheme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
+
   return (
     <>
       <nav className={`navbar navbar-expand-lg ${currentTheme.nav}`}>
@@ -14,9 +15,9 @@ const Nav = () => {
           <a className="navbar-brand" href="#">
             Capstone Project
           </a>
-          <div class={`dropdown me-auto`}>
+          <div className={`dropdown me-auto`}>
             <button
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -24,25 +25,28 @@ const Nav = () => {
             >
               Movies
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Action
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Popular
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Top Rated
                 </a>
               </li>
             </ul>
           </div>
-          <ThemeSwitch onClick={() => dispatch(changeTheme())}></ThemeSwitch>
+          <ThemeSwitch
+            checked={stateTheme}
+            onClick={() => dispatch(changeTheme())}
+          ></ThemeSwitch>
           <p className={`my-auto ${currentTheme.p}`}>Avatar</p>
         </div>
       </nav>

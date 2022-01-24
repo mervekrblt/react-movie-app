@@ -2,8 +2,11 @@ import { useSelector } from "react-redux";
 import Login from "./pages/Login";
 
 function App() {
-  const user = useSelector((state) => state.user.username);
-  console.log(user);
+  const theme = useSelector((state) => state.theme);
+  console.log(theme);
+  document.querySelector("body").style.backgroundColor = theme
+    ? "#141414"
+    : "white";
   return (
     <div>
       <Login />

@@ -6,7 +6,7 @@ const theme = {
   },
   isLight: {
     nav: 'navbar-light, bg-light',
-    p: 'text-success',
+    p: 'text-primary',
     card: 'text-white bg-dark'
   }
 }
