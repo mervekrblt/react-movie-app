@@ -8,13 +8,12 @@ import { Provider } from "react-redux";
 import store, { persistor } from "./reduxStore";
 import "./index.css";
 import App from "./App";
-import Nav from "./components/base/Nav";
+
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Nav />
         <App />
       </PersistGate>
     </Provider>

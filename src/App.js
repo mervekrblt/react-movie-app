@@ -1,16 +1,33 @@
 import { useSelector } from "react-redux";
-import Login from "./pages/Login";
+import { Route, Routes } from "react-router-dom";
+import Nav from "./components/base/Nav";
+import routes from "./routes";
+import Error from "./pages/Error";
 
 function App() {
   const theme = useSelector((state) => state.theme);
-  console.log(theme);
+  const isLogin = useSelector((state) => state.isLogin);
+  console.log(isLogin);
   document.querySelector("body").style.backgroundColor = theme
     ? "#141414"
     : "white";
+
   return (
-    <div>
-      <Login />
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        {routes
+          .filter((route) => route.isLogin === isLogin)
+          .map((route) => (
+            <Route
+              key={route.id}
+              path={route.path}
+              element={<route.element />}
+            />
+          ))}
+          <Route path="*" element={<Error />}/>
+      </Routes>
+    </>
   );
 }
 
