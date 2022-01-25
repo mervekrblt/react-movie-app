@@ -1,10 +1,22 @@
-import { useEffect } from "react";
-import MovieCard from "../components/MovieCard"
-console.log(process.env.REACT_APP_API_URL)
+import { useQuery } from 'react-query';
+import MovieCard from "../components/MovieCard";
+import { fetchTrends } from "../api";
 const Home = () => {
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+    isFetched,
+    isFetching,
+    ...query
+  } = useQuery("trends", fetchTrends, { retry: false });
 
-return <>
-<MovieCard/>
-</>
-}
-export default Home
+  console.log(data?.data?.results);
+  return (
+    <>
+      <MovieCard />
+    </>
+  );
+};
+export default Home;
