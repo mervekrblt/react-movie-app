@@ -10,12 +10,12 @@ export const isLogin = (value = true) => {
 }
 
 //REDUCERS
-const isLoginReducer = (_, action) => {
+const isLoginReducer = (isLogin = false, action) => {
   switch (action.type) {
     case IS_LOGIN:
       return action.payload
     default:
-      return false
+      return isLogin
   }
 }
 export default isLoginReducer
