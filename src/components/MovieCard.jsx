@@ -1,4 +1,3 @@
-import * as React from "react";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,7 +17,6 @@ const MovieCard = ({ id, img, release, title }) => {
       style={{ backgroundColor: currentTheme.card }}
       sx={{
         width: {
-          xs: 100, // theme.breakpoints.up('xs')
           md: 250, // theme.breakpoints.up('md')
         },
         margin: 3,
@@ -33,8 +31,18 @@ const MovieCard = ({ id, img, release, title }) => {
         alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="text.warning">
-          {title} {""}
+        <Typography
+          
+          color="text.primary"
+          sx={{ textTransform: "uppercase", fontWeight: 600 }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          
+          color="primary.main"
+          sx={{ textTransform: "uppercase", fontWeight: 600 }}
+        >
           {release}
         </Typography>
       </CardContent>
