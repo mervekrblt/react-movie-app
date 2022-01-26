@@ -14,6 +14,7 @@ const MovieCard = ({ id, img, release, title }) => {
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
   return (
     <Card
+    onClick= {() => console.log(id)}
       style={{ backgroundColor: currentTheme.card }}
       sx={{
         width: {

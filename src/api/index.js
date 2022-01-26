@@ -20,3 +20,12 @@ export const fetchDiscover = () => {
     console.log(error);
   }
 };
+
+export const searchMovie = (q) => {
+  try {
+    const data = BASE_AXIOS.get(`search/movie?api_key=${BASE_KEY}&query=${q}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
