@@ -1,0 +1,7 @@
+.not-found {
+  background-image: url(http://angoul-loisirs.fr/wp-content/uploads/2017/07/no-signal.jpg);
+  height: 100vh;
+  margin: 5%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

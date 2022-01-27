@@ -3,8 +3,12 @@ import { useState } from "react";
 import MovieCard from "../MovieCard";
 import { fetchTrends } from "../../api";
 import Loading from "../Loading";
+import theme from "../../theme";
+import { useSelector } from "react-redux";
 
 const Trend = () => {
+  const stateTheme = useSelector((state) => state.theme);
+  const currentTheme = stateTheme ? theme.isDark : theme.isLight;
   const [select, setSelect] = useState("day");
 
   const { isLoading, data } = useQuery(
@@ -19,13 +23,13 @@ const Trend = () => {
     {isLoading && <Loading />}
       <section className="text-center">
         <button
-          className="btn btn-warning me-3"
+          className={`${currentTheme.button} me-3`}
           onClick={() => setSelect("day")}
         >
           Today
         </button>
         <button
-          className="btn btn-warning"
+          className={`${currentTheme.button}`}
           name="week"
           onClick={() => setSelect("week")}
         >

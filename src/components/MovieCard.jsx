@@ -14,7 +14,7 @@ const MovieCard = ({ id, img, release, title }) => {
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
   return (
     <Card
-    onClick= {() => console.log(id)}
+      onClick={() => console.log(id)}
       style={{ backgroundColor: currentTheme.card }}
       sx={{
         width: {
@@ -28,19 +28,22 @@ const MovieCard = ({ id, img, release, title }) => {
     >
       <CardMedia
         component="img"
-        src={`https://image.tmdb.org/t/p/w500/${img}`}
+        sx={{ width: { sm: "70%"}, margin: "auto"}}
+        src={
+          img
+            ? `https://image.tmdb.org/t/p/w500/${img}`
+            : `https://i.ytimg.com/vi/jYcQrIAOap4/maxresdefault.jpg`
+        }
         alt="Paella dish"
       />
       <CardContent>
         <Typography
-          
           color="text.primary"
           sx={{ textTransform: "uppercase", fontWeight: 600 }}
         >
           {title}
         </Typography>
         <Typography
-          
           color="primary.main"
           sx={{ textTransform: "uppercase", fontWeight: 600 }}
         >

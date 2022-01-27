@@ -8,6 +8,7 @@ import { searchMovie } from "../api";
 import theme from "../theme";
 import Loading from "../components/Loading";
 import MovieCard from "../components/MovieCard";
+import NotFound from "../components/NotFound";
 
 const SearchPage = () => {
   const stateTheme = useSelector((state) => state.theme);
@@ -18,10 +19,10 @@ const SearchPage = () => {
   const search = urlParams.get("q");
 
   const [page, setPage] = useState(1);
+
   const handleChange = (event, value) => {
     setPage(value);
   };
-
   const { data, isLoading } = useQuery(
     ["search", search],
     () => searchMovie(search),
@@ -29,6 +30,7 @@ const SearchPage = () => {
       retry: false,
     }
   );
+
   return (
     <>
       <Search />
@@ -36,7 +38,7 @@ const SearchPage = () => {
       {!isLoading && (
         <div className="container w-75">
           <div className="row flex-row justify-content-around">
-            {data?.data?.results.slice((page*4 - 4), page*4 ).map((item) => (
+            {data?.data?.results.slice((page*4 - 3), page*4 ).map((item) => (
               <MovieCard
                 key={item.id}
                 id={item.id}
@@ -48,13 +50,13 @@ const SearchPage = () => {
           </div>
         </div>
       )}
-      <div className="d-flex justify-content-center">
+      {data?.data?.total_pages ? <div className="d-flex justify-content-center">
         <Pagination
-        count={6}
+        count={5}
         onChange={handleChange}
         color={`${currentTheme.pagination}`}
       />
-      </div>
+      </div> : <NotFound/>}
       
     </>
   );
