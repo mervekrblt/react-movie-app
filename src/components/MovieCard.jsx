@@ -8,8 +8,9 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import theme from "../theme";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const MovieCard = ({ id, img, release, title }) => {
+const MovieCard = ({ id, img, release, title, character, original_name }) => {
   const stateTheme = useSelector((state) => state.theme);
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
   return (
@@ -28,7 +29,7 @@ const MovieCard = ({ id, img, release, title }) => {
     >
       <CardMedia
         component="img"
-        sx={{ width: { sm: "70%"}, margin: "auto"}}
+        sx={{ width: { sm: "70%" }, margin: "auto" }}
         src={
           img
             ? `https://image.tmdb.org/t/p/w500/${img}`
@@ -36,7 +37,8 @@ const MovieCard = ({ id, img, release, title }) => {
         }
         alt="Paella dish"
       />
-      <CardContent>
+
+      {title && <><CardContent>
         <Typography
           color="text.primary"
           sx={{ textTransform: "uppercase", fontWeight: 600 }}
@@ -49,6 +51,14 @@ const MovieCard = ({ id, img, release, title }) => {
         >
           {release}
         </Typography>
+        <Link to={`/movie/${id}`}>
+          <Typography
+            color="text.primary"
+            sx={{ textTransform: "uppercase", fontWeight: 600 }}
+          >
+            DETAILS
+          </Typography>
+        </Link>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-around" }}>
         <IconButton aria-label="add to favorites">
@@ -60,7 +70,17 @@ const MovieCard = ({ id, img, release, title }) => {
         >
           <BookmarkIcon />
         </IconButton>
-      </CardActions>
+      </CardActions></>}
+      {character && <><Typography
+          color="text.primary"
+          sx={{ textTransform: "uppercase", fontWeight: 600 }}
+        >
+          {character}
+        </Typography>
+        <Typography
+          color="primary.main"
+          sx={{ textTransform: "uppercase", fontWeight: 600 }}
+        >{original_name}</Typography></>}
     </Card>
   );
 };
