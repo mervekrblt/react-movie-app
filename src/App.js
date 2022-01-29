@@ -10,6 +10,8 @@ function App() {
   const theme = useSelector((state) => state.theme);
   const isLogin = useSelector((state) => state.isLogin);
 
+  document.querySelector("body").setAttribute("id","scrollbar")
+
   document.querySelector("body").style.backgroundColor = theme
     ? "#141414"
     : "white";

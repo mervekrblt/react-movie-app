@@ -1,3 +1,4 @@
+import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MovieDetail from "./pages/MovieDetail";
@@ -8,6 +9,7 @@ const routes = [
   { id: 2, path: "home", element: Home, isLogin: true },
   { id: 3, path: "search", element: SearchPage, isLogin: true },
   { id: 4, path: "movie/:id", element: MovieDetail , isLogin: true },
+  { id: 5, path: "profile", element: Profile , isLogin: true },
 ];
 
 export default routes

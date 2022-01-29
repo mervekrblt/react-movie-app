@@ -5,6 +5,7 @@ import { fetchTrends } from "../../api";
 import Loading from "../Loading";
 import theme from "../../theme";
 import { useSelector } from "react-redux";
+import "./Listing.css"
 
 const Trend = () => {
   const stateTheme = useSelector((state) => state.theme);
@@ -37,7 +38,7 @@ const Trend = () => {
         </button>
       </section>
       {!isLoading &&<div className="container w-75">
-        <div className="row flex-row flex-nowrap overflow-auto">
+        <div className="row flex-row flex-nowrap overflow-auto" id="scrollbar">
           {data?.data?.results.map((trend) => (
             <MovieCard
               key={trend.id}

@@ -1,4 +1,5 @@
 import MovieCard from "../MovieCard";
+import "./Listing.css"
 
 const DetailsListing = ({ cast }) => {
   return (
@@ -6,7 +7,7 @@ const DetailsListing = ({ cast }) => {
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
-            <div className="row d-flex flex-row flex-nowrap overflow-auto">
+            <div className="row d-flex flex-row flex-nowrap overflow-auto" id="scrollbar">
               {cast?.map((people) => (
               <MovieCard
                 key={people.id}
