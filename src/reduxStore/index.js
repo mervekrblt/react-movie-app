@@ -4,11 +4,15 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import userReducer from "./user";
 import themeReducer from "./theme";
 import isLoginReducer from "./isLogin";
+import favoritesReducer from "./favorites"; 
+import seenlistReducer from "./seenlist";
 
 const rootReducer = combineReducers({
   isLogin: isLoginReducer,
   user: userReducer,
-  theme: themeReducer
+  theme: themeReducer,
+  favorites: favoritesReducer,
+  seenlist: seenlistReducer
 });
 
 const persistConfig = {

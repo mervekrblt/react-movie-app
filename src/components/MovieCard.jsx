@@ -6,16 +6,34 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { red, green } from "@mui/material/colors";
 import theme from "../theme";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addFavorites, deleteFavorites } from "../reduxStore/favorites";
+import { addSeenlist, deleteSeenlist } from "../reduxStore/seenlist";
 
-const MovieCard = ({ id, img, release, title, character, original_name }) => {
+const MovieCard = ({
+  id,
+  img,
+  release,
+  title,
+  character,
+  original_name,
+  genres,
+}) => {
+  const dispatch = useDispatch();
   const stateTheme = useSelector((state) => state.theme);
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
+
+  const favorites = useSelector((state) => state.favorites);
+  const seenlist = useSelector((state) => state.seenlist);
+
+  const addFavorite = () => {
+    console.log("add favorite", id, genres);
+  };
   return (
     <Card
-      onClick={() => console.log(id)}
       style={{ backgroundColor: currentTheme.card }}
       sx={{
         width: {
@@ -38,49 +56,81 @@ const MovieCard = ({ id, img, release, title, character, original_name }) => {
         alt="Paella dish"
       />
 
-      {title && <><CardContent>
-        <Typography
-          color="text.primary"
-          sx={{ textTransform: "uppercase", fontWeight: 600 }}
-        >
-          {title}
-        </Typography>
-        <Typography
-          color="primary.main"
-          sx={{ textTransform: "uppercase", fontWeight: 600 }}
-        >
-          {release}
-        </Typography>
-        <Link to={`/movie/${id}`}>
+      {title && (
+        <>
+          <CardContent>
+            <Typography
+              color="text.primary"
+              sx={{ textTransform: "uppercase", fontWeight: 600 }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              color="primary.main"
+              sx={{ textTransform: "uppercase", fontWeight: 600 }}
+            >
+              {release}
+            </Typography>
+            <Link to={`/movie/${id}`}>
+              <Typography
+                color="text.primary"
+                sx={{ textTransform: "uppercase", fontWeight: 600 }}
+              >
+                DETAILS
+              </Typography>
+            </Link>
+          </CardContent>
+          <CardActions sx={{ justifyContent: "space-around" }}>
+            {favorites.favoriteFilms.some((film) => film.id === id) ? (
+              <IconButton
+                aria-label="favorite"
+                onClick={() => dispatch(deleteFavorites(id, title, genres))}
+              >
+                <FavoriteIcon sx={{ color: red[600] }} />
+              </IconButton>
+            ) : (
+              <IconButton
+                aria-label="favorite"
+                onClick={() => dispatch(addFavorites(id, title, genres))}
+              >
+                <FavoriteIcon />
+              </IconButton>
+            )}
+
+            {seenlist.seenFilms.some((film) => film.id === id) ? (
+              <IconButton
+                aria-label="bookmarked"
+                onClick={() => dispatch(deleteSeenlist(id, title, genres))}
+              >
+                <BookmarkIcon sx={{ color: green[600] }} />
+              </IconButton>
+            ) : (
+              <IconButton
+                aria-label="bookmarked"
+                onClick={() => dispatch(addSeenlist(id, title, genres))}
+              >
+                <BookmarkIcon />
+              </IconButton>
+            )}
+          </CardActions>
+        </>
+      )}
+      {character && (
+        <>
           <Typography
             color="text.primary"
             sx={{ textTransform: "uppercase", fontWeight: 600 }}
           >
-            DETAILS
+            {character}
           </Typography>
-        </Link>
-      </CardContent>
-      <CardActions sx={{ justifyContent: "space-around" }}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton
-          aria-label="share"
-          onClick={() => console.log("bookmarked")}
-        >
-          <BookmarkIcon />
-        </IconButton>
-      </CardActions></>}
-      {character && <><Typography
-          color="text.primary"
-          sx={{ textTransform: "uppercase", fontWeight: 600 }}
-        >
-          {character}
-        </Typography>
-        <Typography
-          color="primary.main"
-          sx={{ textTransform: "uppercase", fontWeight: 600 }}
-        >{original_name}</Typography></>}
+          <Typography
+            color="primary.main"
+            sx={{ textTransform: "uppercase", fontWeight: 600 }}
+          >
+            {original_name}
+          </Typography>
+        </>
+      )}
     </Card>
   );
 };

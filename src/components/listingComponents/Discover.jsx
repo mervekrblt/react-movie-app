@@ -20,6 +20,7 @@ const Discover = () => {
                 img={discover.poster_path}
                 title={discover.title ? discover.title : discover.original_name}
                 release={discover.release_date}
+                genres={discover.genre_ids}
               />
             ))}
           </div>

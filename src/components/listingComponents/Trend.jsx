@@ -45,6 +45,7 @@ const Trend = () => {
               img={trend.poster_path}
               title={trend.title ? trend.title : trend.original_name}
               release={trend.release_date}
+              genres={trend.genre_ids}
             />
           ))}
         </div>
