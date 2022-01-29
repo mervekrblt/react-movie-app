@@ -6,7 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { red, green } from "@mui/material/colors";
+import { red, orange } from "@mui/material/colors";
 import theme from "../theme";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -93,7 +93,7 @@ const MovieCard = ({
                 aria-label="bookmarked"
                 onClick={() => dispatch(deleteSeenlist(id, title, genres))}
               >
-                <BookmarkIcon sx={{ color: green[600] }} />
+                <BookmarkIcon sx={{ color: orange[600] }} />
               </IconButton>
             ) : (
               <IconButton
