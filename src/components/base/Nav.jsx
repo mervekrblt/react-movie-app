@@ -12,7 +12,7 @@ const Nav = () => {
     <>
       <nav className={`navbar navbar-expand-lg ${currentTheme.nav}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="...">
             Capstone Project
           </a>
           <div className={`dropdown me-auto`}>
@@ -27,17 +27,17 @@ const Nav = () => {
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="...">
                   Action
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="...">
                   Popular
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="...">
                   Top Rated
                 </a>
               </li>
