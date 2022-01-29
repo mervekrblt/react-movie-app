@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import theme from "../theme"
+import theme from "../theme";
 
 const DetailCard = ({
   img,
@@ -9,8 +9,6 @@ const DetailCard = ({
   overview,
   time,
   crew,
-  review,
-  recom,
 }) => {
   const stateTheme = useSelector((state) => state.theme);
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
@@ -35,7 +33,13 @@ const DetailCard = ({
             ))}</div>
               <p className={`${currentTheme.text}`}>Release Date: {release_date}</p>
               <p className={`${currentTheme.text}`}>Overview: {overview}</p>
-              <div className={`${currentTheme.text} `}>{crew?.map( person => <span className="me-5" key={person.name}>{person.name} - {person.known_for_department}</span>)}</div>
+            <div className={`${currentTheme.text} `}>
+              {crew?.map((person) => (
+                <span className="me-5" key={person.id}>
+                  {person.name} - {person.known_for_department}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

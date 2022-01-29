@@ -29,9 +29,6 @@ const MovieCard = ({
   const favorites = useSelector((state) => state.favorites);
   const seenlist = useSelector((state) => state.seenlist);
 
-  const addFavorite = () => {
-    console.log("add favorite", id, genres);
-  };
   return (
     <Card
       style={{ backgroundColor: currentTheme.card }}
@@ -45,9 +42,10 @@ const MovieCard = ({
         justifyContent: "space-between",
       }}
     >
+      <Link to={`/movie/${id}`}>
       <CardMedia
         component="img"
-        sx={{ width: { sm: "70%" }, margin: "auto" }}
+        sx={{ margin: "auto" }}
         src={
           img
             ? `https://image.tmdb.org/t/p/w500/${img}`
@@ -55,6 +53,7 @@ const MovieCard = ({
         }
         alt="Paella dish"
       />
+      </Link>
 
       {title && (
         <>
@@ -71,14 +70,6 @@ const MovieCard = ({
             >
               {release}
             </Typography>
-            <Link to={`/movie/${id}`}>
-              <Typography
-                color="text.primary"
-                sx={{ textTransform: "uppercase", fontWeight: 600 }}
-              >
-                DETAILS
-              </Typography>
-            </Link>
           </CardContent>
           <CardActions sx={{ justifyContent: "space-around" }}>
             {favorites.favoriteFilms.some((film) => film.id === id) ? (

@@ -6,6 +6,7 @@ import {
   getReview,
   searchMovieDetail,
 } from "../api";
+import AvatarImg from "../components/Avatar";
 import DetailCard from "../components/DetailCard";
 import Loading from "../components/Loading";
 import DetailsListing from "../components/listingComponents/DetailsListing";
@@ -25,6 +26,7 @@ const MovieDetail = () => {
   const recommendations = useQuery(["recommendations", id], () =>
     getRecommendations(id)
   );
+  console.log(recommendations)
   return (
     <>
       {isLoading ? (
@@ -42,7 +44,36 @@ const MovieDetail = () => {
             review={review?.data?.data.results[0]}
             recom={recommendations?.data?.data?.results}
           />
-          <DetailsListing cast={people?.data?.data.cast} />
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8">
+                <DetailsListing cast={people?.data?.data.cast} />
+              </div>
+              <div className="col-lg-4 my-auto">
+                <div className="card">
+                  <div className="card-body">
+                    <AvatarImg
+                      img={
+                        review?.data?.data?.results[0]?.author_details
+                          .avatar_path ||
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Favatar%2Favatar_PNG48.png%3Fi%3D1&f=1&nofb=1"
+                      }
+                    />
+                    <h3 className="card-text">
+                      {review?.data?.data?.results[0]?.author_details?.name ||
+                        review?.data?.data?.results[0]?.author_details
+                          ?.username}
+                    </h3>
+                    <p className="card-text">
+                      {review?.data?.data?.results[0]?.content.substring(0, 400) || "Empty Review"}
+                      ...
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <DetailsListing recom={recommendations?.data?.data.results} />
         </>
       )}
     </>
