@@ -11,7 +11,7 @@ const routes = [
   { id: 3, path: "search", element: SearchPage, isLogin: true },
   { id: 4, path: "movie/:id", element: MovieDetail , isLogin: true },
   { id: 5, path: "profile", element: Profile , isLogin: true },
-  { id: 5, path: "filter/:category", element: Filter , isLogin: true },
+  { id: 6, path: "filter/:category", element: Filter , isLogin: true },
 ];
 
 export default routes
