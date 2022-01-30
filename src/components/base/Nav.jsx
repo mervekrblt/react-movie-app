@@ -29,21 +29,16 @@ const Nav = () => {
               Movies
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a className="dropdown-item" href="...">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="...">
+              <Link style={{ textDecoration: "none"}} to={`filter/popular`}>
+                <p className="dropdown-item">
                   Popular
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="...">
+                </p>
+              </Link>
+              <Link style={{ textDecoration: "none"}} to={`filter/top_rated`}>
+                <p className="dropdown-item">
                   Top Rated
-                </a>
-              </li>
+                </p>
+              </Link>
             </ul>
           </div>
           <ThemeSwitch
