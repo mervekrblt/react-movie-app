@@ -68,10 +68,12 @@ export const getRecommendations = (movieId) => {
   }
 };
 
-export const getFilter = (pathname) => {
+export const getFilter = (pathname, genrepath) => {
+  //const genres = genreList.map(genre => `&with_genres=${genre}`).join("")
+  //console.log(genres)
   try {
     const data = BASE_AXIOS.get(
-      `movie/${pathname}?api_key=${BASE_KEY}`
+      `movie/${pathname}?api_key=${BASE_KEY}${genrepath}`
     );
     return data;
   } catch (error) {
