@@ -16,26 +16,26 @@ const Profile = () => {
   const [items, setItems] = useState(films);
 
   const selectHandler = (e) => {
-    if (e.target.value === "Favorites") {
+    console.log(e.target.value)
+    if (e.target.value === "fav") {
       setItems(favorites.favoriteFilms);
-    } else if (e.target.value === "Seenlist") {
+    } else if (e.target.value === "seen") {
       setItems(seenlist.seenFilms);
     } else {
       setItems(films);
     }
   };
-  console.log(favorites);
 
   return (
     <>
       <select
         className="form-select w-50 my-5 mx-auto"
-        onClick={selectHandler}
+        onChange={selectHandler}
         aria-label="Default select example"
       >
-        <option name="date">Closest Release Date</option>
-        <option name="fav">Favorites</option>
-        <option name="seen">Seenlist</option>
+        <option value="date">Closest Release Date</option>
+        <option value="fav">Favorites</option>
+        <option value="seen">Seenlist</option>
       </select>
       <table className="table w-75 mx-auto border">
         <thead>
@@ -54,8 +54,8 @@ const Profile = () => {
                 <td>
                   {film?.genre
                     .map((id) => genres.filter((genre) => genre.id === id))
-                    .map((item) => (
-                      <span>{item[0]?.name} </span>
+                    .map((item, i) => (
+                      <span key={i}>{item[0]?.name} </span>
                     ))}
                 </td>
               </tr>
