@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { genres } from "../genres";
+import genres from "../genres";
 
 const Profile = () => {
   const seenlist = useSelector((state) => state.seenlist);
@@ -52,8 +52,7 @@ const Profile = () => {
                 <th scope={film.id}>{film.id}</th>
                 <td>{film.title}</td>
                 <td>
-                  {film?.genre
-                    .map((id) => genres.filter((genre) => genre.id === id))
+                  {film?.genre?.map((id) => genres.filter((genre) => genre.id === id))
                     .map((item, i) => (
                       <span key={i}>{item[0]?.name} </span>
                     ))}

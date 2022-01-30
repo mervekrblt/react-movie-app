@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getFilter } from "../api";
-import { genres } from "../genres";
-import { useEffect, useState } from "react";
+import genres from "../genres";
+import Loading from "../components/Loading";
+import MovieCard from "../components/MovieCard";
 
 const Filter = ({ props }) => {
   const navigate = useNavigate();
@@ -10,31 +12,61 @@ const Filter = ({ props }) => {
   const pathname = location.pathname.split("/")[2];
 
   const [genreList, setGenreList] = useState([]);
-  const genrepath = genreList.map(genre => `&with_genres=${genre}`).join("")
+  const [sort, setSort] = useState("");
+  const genrepath = genreList.map((genre) => `&with_genres=${genre}`).join("");
 
   useEffect(() => {
-    navigate(`?${genrepath}`)
-  }, [ genrepath])
+    navigate(`?sort_by=${sort}${genrepath}`);
+  }, [genrepath, sort]);
 
   const selectGenres = (e) => {
     if (e.target.checked === true) {
       setGenreList([...genreList, e.target.id]);
     } else {
       const deleted = genreList.indexOf(e.target.id);
-      genreList.splice(deleted, 1)
+      genreList.splice(deleted, 1);
       setGenreList((prev) => prev.filter((genre) => genre.id !== e.target.id));
     }
   };
 
-  const films = useQuery(
-    ["filteredMovie", { pathname, genrepath }],
-    () => getFilter(pathname, genrepath)
+  const selectSort = (e) => {
+    setSort(e.target.value);
+  };
+
+  const { data, isLoading } = useQuery(
+    ["filteredMovie", { pathname, genrepath, sort }],
+    () => getFilter(pathname, genrepath, sort)
   );
+
   return (
     <>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
+            <div className="filter">
+              <h3>Sort Results By</h3>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={selectSort}
+              >
+                <option value="popularity.desc" selected>
+                  Popularity Descending
+                </option>
+                <option value="popularity.asc">Popularity Ascending</option>
+                <option value="vote_average.desc">Rating Descending</option>
+                <option value="vote_average.asc">Rating Ascending</option>
+                <option value="primary_release_date.desc">
+                  Release Date Descending
+                </option>
+                <option value="primary_release_date.asc">
+                  Release Date Ascending
+                </option>
+                <option value="title.asc">Title (A-Z)</option>
+                <option value="title.desc">Title (Z-A)</option>
+              </select>
+            </div>
+
             <div
               className="btn-group mt-5 d-flex flex-wrap"
               role="group"
@@ -62,21 +94,23 @@ const Filter = ({ props }) => {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-              {films?.data?.data.results.map((film) => {
-                return (
-                  <div className="col" key={film.id}>
-                    <div className="w-100">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-                        className="card-img-top"
-                      />
-                      <div className="card-body"></div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            {isLoading && <Loading />}
+            {!isLoading && (
+              <div
+                className="row flex-row flex-nowrap overflow-auto g-4"
+                id="scrollbar"
+              >
+                {data?.data.results.map((film) => {
+                  return (
+                    <MovieCard
+                      key={film.id}
+                      img={film.poster_path}
+                      title={film.title}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

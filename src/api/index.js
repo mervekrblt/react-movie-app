@@ -68,14 +68,24 @@ export const getRecommendations = (movieId) => {
   }
 };
 
-export const getFilter = (pathname, genrepath) => {
-  //const genres = genreList.map(genre => `&with_genres=${genre}`).join("")
-  //console.log(genres)
+export const getFilter = (pathname, genrepath, sort) => {
+  console.log(sort);
   try {
-    const data = BASE_AXIOS.get(
-      `movie/${pathname}?api_key=${BASE_KEY}${genrepath}`
-    );
-    return data;
+    if (genrepath.length === 0 && !sort) {
+      const data = BASE_AXIOS.get(`movie/${pathname}?api_key=${BASE_KEY}`);
+      return data;
+    } else if (sort && genrepath.length === 0) {
+      console.log("sort");
+      const data = BASE_AXIOS.get(
+        `/discover/movie?sort_by=${sort}&api_key=${BASE_KEY}`
+      );
+      return data;
+    } else if (genrepath.length !== 0 || sort) {
+      const data = BASE_AXIOS.get(
+        `/discover/movie?sort_by=${sort}&api_key=${BASE_KEY}${genrepath}`
+      );
+      return data;
+    }
   } catch (error) {
     console.log(error);
   }
