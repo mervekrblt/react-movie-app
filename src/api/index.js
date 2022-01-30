@@ -1,7 +1,7 @@
 import axios from "axios";
 import request from "./requests";
 const BASE_AXIOS = axios.create({ baseURL: "https://api.themoviedb.org/3/" });
-const BASE_KEY = process.env.REACT_APP_API_KEY
+const BASE_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchTrends = (select) => {
   try {
@@ -28,7 +28,7 @@ export const searchMovie = (q) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const searchMovieDetail = (movieId) => {
   try {
@@ -37,7 +37,7 @@ export const searchMovieDetail = (movieId) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getPeople = (movieId) => {
   try {
@@ -46,7 +46,7 @@ export const getPeople = (movieId) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getReview = (movieId) => {
   try {
@@ -55,13 +55,26 @@ export const getReview = (movieId) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getRecommendations = (movieId) => {
   try {
-    const data = BASE_AXIOS.get(`movie/${movieId}/recommendations?api_key=${BASE_KEY}`);
+    const data = BASE_AXIOS.get(
+      `movie/${movieId}/recommendations?api_key=${BASE_KEY}`
+    );
     return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+export const getFilter = (pathname) => {
+  try {
+    const data = BASE_AXIOS.get(
+      `movie/${pathname}?api_key=${BASE_KEY}`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
