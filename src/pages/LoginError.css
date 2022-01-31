@@ -1,0 +1,17 @@
+.login-err {
+  background-image: url("https://i.ytimg.com/vi/jdI-Eoz-SfE/maxresdefault.jpg");
+  height: 80vh;
+  background-position: center 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.error {
+  background-image: url("https://cdn.mos.cms.futurecdn.net/PuXipAW3AXUzUJ4uYyxPKC-1200-80.jpg");
+  height: 100vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

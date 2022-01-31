@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addFavorites, deleteFavorites } from "../reduxStore/favorites";
 import { addSeenlist, deleteSeenlist } from "../reduxStore/seenlist";
+import genre from "../genres";
 
 const MovieCard = ({
   id,
@@ -28,7 +29,6 @@ const MovieCard = ({
 
   const favorites = useSelector((state) => state.favorites);
   const seenlist = useSelector((state) => state.seenlist);
-
   return (
     <Card
       style={{ backgroundColor: currentTheme.card }}
@@ -43,16 +43,16 @@ const MovieCard = ({
       }}
     >
       <Link to={`/movie/${id}`}>
-      <CardMedia
-        component="img"
-        sx={{ margin: "auto" }}
-        src={
-          img
-            ? `https://image.tmdb.org/t/p/w500/${img}`
-            : `https://i.ytimg.com/vi/jYcQrIAOap4/maxresdefault.jpg`
-        }
-        alt="Paella dish"
-      />
+        <CardMedia
+          component="img"
+          sx={{ margin: "auto" }}
+          src={
+            img
+              ? `https://image.tmdb.org/t/p/w500/${img}`
+              : `https://i.ytimg.com/vi/jYcQrIAOap4/maxresdefault.jpg`
+          }
+          alt="Paella dish"
+        />
       </Link>
 
       {title && (
@@ -70,6 +70,11 @@ const MovieCard = ({
             >
               {release}
             </Typography>
+            {genres && (genres?.map((id, i) =>
+              genre
+                .filter((item) => item.id == id)
+                .map((name) => <span key={name.name}>{name.name} </span>)
+            ))}
           </CardContent>
           <CardActions sx={{ justifyContent: "space-around" }}>
             {favorites.favoriteFilms.some((film) => film.id === id) ? (

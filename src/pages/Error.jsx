@@ -1,4 +1,4 @@
 const Error = () => {
-  return <>Ya giriş yapmadın ya da olmayan bir sayfaya gitmeye çalışıyorsun</>;
+  return <div className="error"></div>;
 };
 export default Error;

@@ -1,0 +1,17 @@
+.login {
+  background-image: url("../../public/logo.svg");
+  background-size: contain;
+  height: 35vh;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 500px) {
+  .login {
+    margin-left: 15vw;
+  }
+}
+@media (min-width: 500px) {
+  .login {
+    margin-left: 40vw;
+  }
+}

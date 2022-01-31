@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import MovieDetail from "./pages/MovieDetail";
 import SearchPage from "./pages/SearchPage";
 import Filter from "./pages/Filter";
+import About from "./pages/About";
 
 const routes = [
   { id: 1, path: "/", element: Login, isLogin: false },
@@ -12,6 +13,7 @@ const routes = [
   { id: 4, path: "movie/:id", element: MovieDetail , isLogin: true },
   { id: 5, path: "profile", element: Profile , isLogin: true },
   { id: 6, path: "filter/:category", element: Filter , isLogin: true },
+  { id: 6, path: "about", element: About , isLogin: true },
 ];
 
 export default routes
