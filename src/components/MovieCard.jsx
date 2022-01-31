@@ -73,7 +73,7 @@ const MovieCard = ({
             {genres && (genres?.map((id, i) =>
               genre
                 .filter((item) => item.id == id)
-                .map((name) => <span>{name.name} </span>)
+                .map((name) => <span key={name.name}>{name.name} </span>)
             ))}
           </CardContent>
           <CardActions sx={{ justifyContent: "space-around" }}>

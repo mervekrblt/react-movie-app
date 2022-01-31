@@ -26,7 +26,7 @@ const LoginForm = () => {
   return (
     <>
       <form
-        className="d-flex my-5 flex-column align-items-center"
+        className="d-flex flex-column align-items-center"
         onSubmit={submitHandler}
       >
         <div className="mb-3 col-6 ">

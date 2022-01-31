@@ -5,7 +5,8 @@ const theme = {
     button: 'btn btn-warning',
     card: '#455564',
     pagination: "warning",
-    text: "text-light"
+    text: "text-light",
+    outline: "btn btn-warning btn-outline-light"
   },
   isLight: {
     nav: 'navbar-light, bg-light',
@@ -13,7 +14,8 @@ const theme = {
     button: 'btn btn-primary',
     card: '#4555644d',
     pagination: "primary",
-    text: "text-dark"
+    text: "text-dark",
+    outline: "btn btn-primary btn-outline-dark"
   }
 }
 

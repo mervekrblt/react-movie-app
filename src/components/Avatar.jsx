@@ -90,6 +90,11 @@ const AvatarImg = ({ img, profile }) => {
                 <p>Profile</p>
               </MenuItem>
             </Link>
+            <Link to={"/about"} style={{textDecoration: "none"}}>
+              <MenuItem>
+                <p>About</p>
+              </MenuItem>
+            </Link>
             <MenuItem onClick={exit}>Logout</MenuItem>
           </Menu>
         </>

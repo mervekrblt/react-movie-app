@@ -10,17 +10,17 @@ const Nav = () => {
   const stateUser = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
-
+  console.log(stateUser)
   return (
     <>
       <nav className={`navbar navbar-expand-lg ${currentTheme.nav}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="...">
-            Capstone Project
-          </a>
+        <Link style={{ textDecoration: "none"}} to={`home`}>
+          <img src={'logo.svg'} style={{width: "12vh"}} />
+          </Link>
           <div className={`dropdown me-auto`}>
             <button
-              className="btn btn-secondary dropdown-toggle"
+              className={`dropdown-toggle ${currentTheme.button}`}
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -46,9 +46,7 @@ const Nav = () => {
             onClick={() => dispatch(changeTheme())}
           ></ThemeSwitch>
           <AvatarImg
-            profile={
-              "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fani-game.com%2Fwp-content%2Fuploads%2F2018%2F01%2Fcover-1.jpg&f=1&nofb=1"
-            }
+            profile={stateUser?.avatarUrl}
           />
         </div>
       </nav>

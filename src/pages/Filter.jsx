@@ -1,12 +1,17 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import { getFilter } from "../api";
 import genres from "../genres";
 import Loading from "../components/Loading";
 import MovieCard from "../components/MovieCard";
+import theme from "../theme";
 
 const Filter = ({ props }) => {
+  const stateTheme = useSelector((state) => state.theme);
+  const currentTheme = stateTheme ? theme.isDark : theme.isLight;
+
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname.split("/")[2];
@@ -83,7 +88,7 @@ const Filter = ({ props }) => {
                       onClick={selectGenres}
                     />
                     <label
-                      className="btn btn-outline-warning"
+                      className={`${currentTheme?.outline}`}
                       htmlFor={genre.id}
                     >
                       {genre.name}

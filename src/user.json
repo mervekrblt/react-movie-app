@@ -1,9 +1,12 @@
 {
-  "avatarUrl": "https://i.picsum.photos/id/1005/150/150.jpg?hmac=-Q1z4K5WO9Q7qDB-R9vrj9440_mRxpeHZMOFHblbB6s",
+  "avatarUrl": "http://ani-game.com/wp-content/uploads/2018/01/cover-1.jpg",
   "username": "merve",
   "password": "123456",
+  "name": "Merve",
+  "surname": "Karabulut",
   "socials": {
-    "twitter": "https://twitter.com/",
-    "instagram": "https://www.instagram.com/"
-  }
+    "twitter": "https://twitter.com/esrikhaller",
+    "github": "https://github.com/mervekrblt"
+  },
+  "joinDate": "31.01.2022"
 }

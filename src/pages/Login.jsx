@@ -1,9 +1,11 @@
 import LoginForm from "../components/LoginForm";
+import "./Login.css"
 
 const Login = () => {
   return (
     <>
-      <LoginForm />
+    <div className="login"/>
+    <LoginForm />
     </>
   );
 };
