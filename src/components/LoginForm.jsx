@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../reduxStore/user";
 import { isLogin } from "../reduxStore/isLogin";
 import theme from "../theme";
-import user from  "../user.json"
-console.log(user)
+import user from "../user.json";
+import { useState } from "react";
+console.log(user);
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stateTheme = useSelector((state) => state.theme);
   const currentTheme = stateTheme ? theme.isDark : theme.isLight;
+  const [err, setErr] = useState(false)
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -17,10 +19,12 @@ const LoginForm = () => {
       event.target.username.value === user.username &&
       event.target.password.value === user.password
     ) {
+      setErr(false)
       dispatch(setUser(user));
-      //dispatch(setPassword(event.target.password.value));
       dispatch(isLogin());
       navigate("/home");
+    }else {
+      setErr(true)
     }
   };
   return (
@@ -29,6 +33,9 @@ const LoginForm = () => {
         className="d-flex flex-column align-items-center"
         onSubmit={submitHandler}
       >
+        {err && <div className="alert alert-warning" role="alert">
+          Username/Password are not correct
+        </div>}
         <div className="mb-3 col-6 ">
           <label htmlFor="username" className={`form-label ${currentTheme.p}`}>
             Username
