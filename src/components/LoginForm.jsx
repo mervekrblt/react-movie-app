@@ -30,6 +30,7 @@ const LoginForm = () => {
   return (
     <>
       <form
+      autoComplete="off"
         className="d-flex flex-column mb-5 align-items-center"
         onSubmit={submitHandler}
       >
