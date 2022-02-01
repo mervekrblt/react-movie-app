@@ -15,7 +15,7 @@ const Nav = () => {
     <>
       <nav className={`navbar navbar-expand-lg ${currentTheme.nav}`}>
         <div className="container-fluid">
-        <Link style={{ textDecoration: "none"}} to={`home`}>
+        <Link style={{ textDecoration: "none"}} to={`/`}>
           <img src={'logo.svg'} style={{width: "12vh"}} />
           </Link>
           <div className={`dropdown me-auto`}>

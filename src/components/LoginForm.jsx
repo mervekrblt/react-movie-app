@@ -30,7 +30,7 @@ const LoginForm = () => {
   return (
     <>
       <form
-        className="d-flex flex-column align-items-center"
+        className="d-flex flex-column mb-5 align-items-center"
         onSubmit={submitHandler}
       >
         {err && <div className="alert alert-warning" role="alert">
