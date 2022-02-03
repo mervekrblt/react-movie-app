@@ -36,7 +36,7 @@ const Profile = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={`${stateUser.avatarUrl}`}
+              src={`${stateUser?.avatarUrl}`}
               style={{ width: "100%" }}
             />
           </div>
